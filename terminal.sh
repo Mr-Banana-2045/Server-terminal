@@ -1,7 +1,6 @@
 while [[ $# -gt 0 ]]
 do
-key="$1"
-case $key in
+case "$1" in
 --update)
 $(git clone https://github.com/Mr-Banana-2045/Server-terminal | cd Server-terminal | bash terminal.sh)
 shift
@@ -12,15 +11,26 @@ done
 while sleep 0
 do
 command_not_found_handle() {
-echo -e $input'\033[91m : Error Command\033[00m'
+zh=''
 }
 read -p 'command-$ ' input
 if [ $input == 'dir' ]; then
-curl -s https://sheetdb.io/api/v1/9k4t6tfssbyud | mz= jq '.[]' | awk -F: '{print $1}' | sed 's/"//g' | sed 's/{//g' | sed 's/}//g'
-elif [ $input = 'help' ]; then
+curl -s https://sheetdb.io/api/v1/67oyyddt24gn8 | mz= jq '.[]' | awk -F: '{print $1}' | sed 's/"//g' | sed 's/{//g' | sed 's/}//g'
+echo -e ' Folder .dev'
+curl -s https://sheetdb.io/api/v1/fl71dpwf0svgb | jq '.[].dev' | echo -e "\n  $(awk '{print $1}')\n" | sed 's/"//g' | sed 's/{//g' | sed 's/}//g'
+elif [ $input == 'help' ]; then
 printf '\n\033[92m  Terminal Server Online\n'
-printf '\033[97mChecking the Dirctory > dirl\n\n\033[00m'
+printf '\033[97mChecking the Dirctory > dir | Tool Update > --update\n\n\033[00m'
+elif [ $input == 'dev' ]; then
+echo -e "\033[94m Upload Source\033[00m"
+read -p 'Enter Tool name > ' tool
+read -p 'Enter source > ' sou
+IFS=' ' read -ra word <<< "$sou"
+stts="${tool} ${word[@]}"
+$(curl -X POST -H "Content-Type: application/json" -s https://sheetdb.io/api/v1/fl71dpwf0svgb -o /dev/null -d '{"dev": "'"$stts"'"}')
+echo -e '\033[92m\n Saved project\033[00m\n'
 elif [ $input == $input ]; then
-curl -s https://sheetdb.io/api/v1/9k4t6tfssbyud | mz= jq '.[] | .'$input | sed 's/"//g' > mmmm.sh ; source mmmm.sh
+curl -s https://sheetdb.io/api/v1/67oyyddt24gn8 | mz= jq '.[] | .'$input | sed 's/"//g' > mmmm.sh ; source mmmm.sh
+curl -s https://sheetdb.io/api/v1/fl71dpwf0svgb | jq '.[]' | sed "s/'//g" | sed 's/"//g' | awk '{for(i=2; i <=NF; i++) printf $i " "; print "\n"}' > kk.sh ; bash kk.sh
 fi
 done
