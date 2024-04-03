@@ -26,11 +26,11 @@ echo -e "\033[94m Upload Source\033[00m"
 read -p 'Enter Tool name > ' tool
 read -p 'Enter source > ' sou
 IFS=' ' read -ra word <<< "$sou"
-stts="${tool} ${word[@]}"
+stts="${tool} ; ${word[@]}"
 $(curl -X POST -H "Content-Type: application/json" -s https://sheetdb.io/api/v1/fl71dpwf0svgb -o /dev/null -d '{"dev": "'"$stts"'"}')
 echo -e '\033[92m\n Saved project\033[00m\n'
 elif [ $input == $input ]; then
 curl -s https://sheetdb.io/api/v1/67oyyddt24gn8 | mz= jq '.[] | .'$input | sed 's/"//g' > mmmm.sh ; source mmmm.sh
-curl -s https://sheetdb.io/api/v1/fl71dpwf0svgb | jq '.[]' | sed "s/'//g" | sed 's/"//g' | awk '{for(i=2; i <=NF; i++) printf $i " "; print "\n"}' > kk.sh ; bash kk.sh
+curl -s https://sheetdb.io/api/v1/fl71dpwf0svgb | jq '.[] | select(.dev | contains("'${input}'"))' | sed 's/"//g' | awk '{for(i=2; i <=NF; i++) printf $i " "; print "\n"}' > kk.sh ; bash kk.sh
 fi
 done
