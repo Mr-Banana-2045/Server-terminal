@@ -8,6 +8,7 @@ shift
 esac
 done
 
+code() {
 while sleep 0
 do
 command_not_found_handle() {
@@ -34,3 +35,30 @@ curl -s https://sheetdb.io/api/v1/67oyyddt24gn8 | mz= jq '.[] | .'$input | sed '
 curl -s https://sheetdb.io/api/v1/fl71dpwf0svgb | jq '.[] | select(.dev | contains("'${input}'"))' | sed 's/"//g' | awk '{for(i=2; i <=NF; i++) printf $i " "; print "\n"}' > kk.sh ; bash kk.sh
 fi
 done
+}
+
+if command -v curl &> /dev/null
+then
+code
+else
+echo -e "\033[91m Error : Not installed Curl\033[00m"
+read -p 'Should curl be installed (y/n) > ' instal
+if [ $instal == 'y' ]; then
+$(pkg install curl)
+elif [ $instal == 'n']; then
+exit
+fi
+fi
+
+fi command -v jq $> /dev/null
+then
+code
+else
+echo -e "\033[91m Error : Not installed jq"
+read -p 'Should jq be installed (y/n) > ' insta
+if [ $insta == 'y' ]; then
+$(pkg install jq)
+elif [ $insta == 'n']; then
+exit
+fi
+fi
